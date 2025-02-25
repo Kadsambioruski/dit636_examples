@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: edu.ncsu.csc326.coffeemaker.InventoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! -- in edu.ncsu.csc326.coffeemaker.InventoryTest
+edu.ncsu.csc326.coffeemaker.InventoryTest.testAddSugar_Negative -- Time elapsed: 0.021 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected edu.ncsu.csc326.coffeemaker.exceptions.InventoryException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3111)
+	at edu.ncsu.csc326.coffeemaker.InventoryTest.testAddSugar_Negative(InventoryTest.java:256)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
