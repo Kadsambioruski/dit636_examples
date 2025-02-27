@@ -9,11 +9,7 @@ import org.junit.jupiter.api.Test;
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 
-/**
- *
- * Example Unit tests for CoffeeMaker class.
- * Do not submit as your own!
- */
+
 public class InventoryTest {
 	
 	private Inventory inv;
@@ -279,6 +275,21 @@ public class InventoryTest {
 			r.setAmtCoffee("10");
 			r.setAmtSugar("10");
 			r.setAmtChocolate("10");
+			
+		} catch (RecipeException e) {
+			fail("RecipeException should not be thrown.");
+		}
+		assertEquals(true, inv.enoughIngredients(r));
+	}
+
+	@Test
+	public void testEnoughIngredients_ExactAmount() {
+		Recipe r = new Recipe();
+		try {
+			r.setAmtMilk("15");
+			r.setAmtCoffee("15");
+			r.setAmtSugar("15");
+			r.setAmtChocolate("15");
 			
 		} catch (RecipeException e) {
 			fail("RecipeException should not be thrown.");
