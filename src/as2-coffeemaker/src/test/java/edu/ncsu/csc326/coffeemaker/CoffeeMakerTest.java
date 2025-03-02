@@ -59,8 +59,9 @@ public class CoffeeMakerTest {
         r4.setAmtSugar("1");
         r4.setPrice("65");
 
+        // Set up for r5
         r5 = new Recipe();
-        r5.setName("Whatever");
+        r5.setName("Cappuchinu");
         r5.setAmtChocolate("16");
         r5.setAmtCoffee("16");
         r5.setAmtMilk("16");
@@ -77,13 +78,14 @@ public class CoffeeMakerTest {
         assertTrue(cm.addRecipe(r4), "Recipe should be added successfully.");
     }
 
+    // Test adding 5 valid recipes but not enough space
     @Test
     public void testAddRecipe_NoSpace() {
         assertTrue(cm.addRecipe(r1), "Recipe should be added successfully.");
         assertTrue(cm.addRecipe(r2), "Recipe should be added successfully.");
         assertTrue(cm.addRecipe(r3), "Recipe should be added successfully.");
         assertTrue(cm.addRecipe(r4), "Recipe should be added successfully.");
-        assertFalse(cm.addRecipe(r5), "No space in recipe.");
+        assertFalse(cm.addRecipe(r5), "No space in recipeBook.");
     }
 
     // Test adding duplicate recipe
@@ -109,17 +111,17 @@ public class CoffeeMakerTest {
     }
 
     // Test editing an existing recipe
-@Test
-public void testEditRecipe() {
-    cm.addRecipe(r1);
-    try {
-        r1.setPrice("60");  // This may throw RecipeException
-        String editedRecipeName = cm.editRecipe(0, r1);
-        assertEquals("Coffee", editedRecipeName, "The edited recipe should be 'Coffee'");
-    } catch (RecipeException e) {
-        fail("Setting price should not throw an exception.");
+    @Test
+    public void testEditRecipe() {
+        cm.addRecipe(r1);
+        try {
+            r1.setPrice("60");
+            String editedRecipeName = cm.editRecipe(0, r1);
+            assertEquals("Coffee", editedRecipeName, "The edited recipe should be 'Coffee'");
+        } catch (RecipeException e) {
+            fail("Setting price should not throw an exception.");
+        }
     }
-}
 
 
     // Test editing a non-existing recipe
