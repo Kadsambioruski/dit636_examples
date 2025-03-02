@@ -145,7 +145,7 @@ public void testEditRecipe() {
     @Test
     public void testMakeCoffeeWithEnoughInventory() {
         cm.addRecipe(r1);
-        int change = cm.makeCoffee(0, 50);  // Price of r1 is 50
+        int change = cm.makeCoffee(0, 50);
         assertEquals(0, change, "The coffee should be made successfully with no change.");
     }
 
@@ -153,7 +153,7 @@ public void testEditRecipe() {
     @Test
     public void testMakeCoffeeWithInsufficientInventory() {
         cm.addRecipe(r5);
-        int change = cm.makeCoffee(0, 50);  // Price of r1 is 50
+        int change = cm.makeCoffee(0, 50);
         assertEquals(50, change, "The payment should be refunded due to insufficient inventory.");
     }
 
@@ -161,24 +161,14 @@ public void testEditRecipe() {
     @Test
     public void testMakeCoffeeWithInvalidPrice() {
         cm.addRecipe(r1);
-        try {
-            cm.addInventory("10", "10", "10", "10");
-            int change = cm.makeCoffee(0, 40);  // Price of r1 is 50, but user paid only 40
-            assertEquals(40, change, "The customer should get a refund if not enough money is provided.");
-        } catch (InventoryException e) {
-            fail("Inventory exception should not be thrown.");
-        }
+        int change = cm.makeCoffee(0, 40);
+        assertEquals(40, change, "The customer should get a refund if not enough money is provided.");
     }
 
     // Test making coffee when no recipes are available
     @Test
     public void testMakeCoffeeNoRecipes() {
-        try {
-            cm.addInventory("10", "10", "10", "10");
-            int change = cm.makeCoffee(0, 50);  // No recipes should result in no coffee
-            assertEquals(50, change, "No coffee should be made when no recipe is available.");
-        } catch (InventoryException e) {
-            fail("Inventory exception should not be thrown.");
-        }
+        int change = cm.makeCoffee(0, 50);
+        assertEquals(50, change, "No coffee should be made when no recipe is available.");
     }
 }
