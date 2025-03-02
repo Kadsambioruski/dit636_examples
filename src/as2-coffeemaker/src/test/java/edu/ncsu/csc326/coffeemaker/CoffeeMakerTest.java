@@ -61,11 +61,11 @@ public class CoffeeMakerTest {
 
         r5 = new Recipe();
         r5.setName("Whatever");
-        r5.setAmtChocolate("1");
-        r5.setAmtCoffee("1");
-        r5.setAmtMilk("1");
-        r5.setAmtSugar("1");
-        r5.setPrice("123123");
+        r5.setAmtChocolate("16");
+        r5.setAmtCoffee("16");
+        r5.setAmtMilk("16");
+        r5.setAmtSugar("16");
+        r5.setPrice("10");
     }
 
     // Test adding a valid recipe
@@ -137,32 +137,24 @@ public void testEditRecipe() {
         } catch (InventoryException e) {
             fail("Adding inventory should not throw an exception.");
         }
+        assertEquals("Coffee: 25\nMilk: 25\nSugar: 25\nChocolate: 25\n", cm.checkInventory());
+        
     }
 
     // Test making coffee with enough inventory
     @Test
     public void testMakeCoffeeWithEnoughInventory() {
         cm.addRecipe(r1);
-        try {
-            cm.addInventory("10", "10", "10", "10");
-            int change = cm.makeCoffee(0, 50);  // Price of r1 is 50
-            assertEquals(0, change, "The coffee should be made successfully with no change.");
-        } catch (InventoryException e) {
-            fail("Inventory exception should not be thrown.");
-        }
+        int change = cm.makeCoffee(0, 50);  // Price of r1 is 50
+        assertEquals(0, change, "The coffee should be made successfully with no change.");
     }
 
     // Test making coffee with insufficient inventory
     @Test
     public void testMakeCoffeeWithInsufficientInventory() {
-        cm.addRecipe(r4);
-        try {
-            cm.addInventory("0", "0", "0", "0");
-            int change = cm.makeCoffee(0, 50);  // Price of r1 is 50
-            assertEquals(50, change, "The payment should be refunded due to insufficient inventory.");
-        } catch (InventoryException e) {
-            fail("Inventory exception should not be thrown.");
-        }
+        cm.addRecipe(r5);
+        int change = cm.makeCoffee(0, 50);  // Price of r1 is 50
+        assertEquals(50, change, "The payment should be refunded due to insufficient inventory.");
     }
 
     // Test making coffee with invalid price (not enough money)
